@@ -1,5 +1,5 @@
 /// <reference types="vite-plugin-pages/client" />;
-import { resolve } from "path";
+import { fileURLToPath } from "url";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import Pages from "vite-plugin-pages";
@@ -10,8 +10,19 @@ export default defineConfig({
     vue(),
     Pages({
       exclude: ["**/components/*.vue", "src/pages/**/components/*.vue"],
-      dirs: [{ dir: resolve(__dirname, "./src/pages"), baseRoute: "" }],
+      dirs: [
+        {
+          dir: fileURLToPath(new URL("./src/pages", import.meta.url)),
+          baseRoute: "",
+        },
+      ],
     }),
     Layouts(),
   ],
+  resolve: {
+    alias: {
+      "@": fileURLToPath(new URL("./src", import.meta.url)),
+      "@/pages": fileURLToPath(new URL("./src/pages", import.meta.url)),
+    },
+  },
 });

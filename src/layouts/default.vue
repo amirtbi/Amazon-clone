@@ -1,7 +1,9 @@
 <template>
-  <h1>default layout</h1>
+  <v-app>
+    <v-app-bar title="Application"></v-app-bar>
 
-  <main>
-    <router-view></router-view>
-  </main>
+    <v-main>
+      <router-view></router-view>
+    </v-main>
+  </v-app>
 </template>
