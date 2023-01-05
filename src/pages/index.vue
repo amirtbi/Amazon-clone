@@ -1,4 +1,12 @@
+<script setup lang="ts">
+import HomeScreenLayout from "@/layouts/homeScreen.vue";
+</script>
+
 <template>
-  <p>index.vue</p>
-  <router-link to="/about"></router-link>
+  <HomeScreenLayout>
+    <template #main>
+      <p>index.vue</p>
+      <router-link to="/about"></router-link>
+    </template>
+  </HomeScreenLayout>
 </template>
