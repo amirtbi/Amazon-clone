@@ -20,7 +20,8 @@
     ],
 
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@axios": ["src/axios.config.ts"]
     }
   },
   "exclude": ["dist", "node_modules"]

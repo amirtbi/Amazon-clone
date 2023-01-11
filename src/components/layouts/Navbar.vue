@@ -1,9 +1,30 @@
 <script setup lang="ts">
+import { computed } from "vue";
+import { useWindowScroll } from "@vueuse/core";
 import Logo from "@/assets/netflix-logo.png";
+
+/**
+ * Composables
+ */
+const { y } = useWindowScroll();
+
+/**
+ * Comnputed properties
+ */
+const showBackground = computed(() => {
+  if (y.value >= 400) {
+    return true;
+  } else {
+    return false;
+  }
+});
 </script>
 
 <template>
-  <nav class="px-4 align-center d-flex justify-space-between">
+  <nav
+    :class="{ 'bg-black': showBackground }"
+    class="px-4 align-center d-flex justify-space-between"
+  >
     <div class="logo-container">
       <v-avatar size="90px" class="d-flex" href="#">
         <v-img id="logo" :src="Logo" alt="logo"></v-img>
@@ -22,7 +43,7 @@ nav {
   padding: 0;
   margin: 0;
   height: 57px;
-  transition-timing-function: ease-in;
+  transition-timing-function: ease-in !important;
   transition: all 0.5s;
 }
 

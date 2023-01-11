@@ -1,15 +1,26 @@
 <script setup lang="ts">
-import Banner from "@/components/layouts/Banner.vue";
 import Navbar from "@/components/layouts/Navbar.vue";
+
+// const banner = toRef(props,'bannerBg')
+
+// const StyleObject = reactive({
+//   backgroundImage:
+// })
 </script>
 
 <template>
-  <div class="layout-wrapper">
+  <div ref="el" class="layout-wrapper">
     <header class="header-container">
       <!--Navbar-->
       <div class="header-row">
         <Navbar />
-        <Banner />
+        <div class="banner-container">
+          <slot name="banner-image" />
+          <div class="banner-content">
+            <slot name="banner-content" />
+          </div>
+        </div>
+        <div class="fade-container"></div>
       </div>
     </header>
 
@@ -28,10 +39,51 @@ import Navbar from "@/components/layouts/Navbar.vue";
 
 .header-row {
   position: relative;
-  max-height: 400px;
-  height: 400px;
+  z-index: 2000000000;
+  max-height: 448px;
+  height: 448px;
 }
 .page-content-layout {
   height: 100vh;
+}
+.fade-container {
+  height: 7rem;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 11111111111111111;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(37, 37, 37, 0.61),
+    transparent
+  );
+}
+
+/**Banner styles */
+
+.banner-container {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+  background-color: black;
+  /* background-image: url("https://image.tmdb.org/t/p/original/9PFonBhy4cQy7Jz20NpMygczOkv.jpg"); */
+  background-size: cover;
+  background-position: center top 10%;
+  background-repeat: no-repeat;
+  object-fit: contain;
+  height: 448px;
+}
+.banner-cover {
+  width: 100%;
+  max-height: 400px;
+  height: 400px;
+}
+.banner-content {
+  position: relative;
+  top: 35%;
+  left: 5%;
 }
 </style>
