@@ -1,26 +1,27 @@
 import ApiClass from "@/configs/Api";
 import type { genre } from "@/models/movieGenres";
+import type { AxiosResponse } from "axios";
 const api = new ApiClass();
 
 const API_KEY = "2e15d9ad5a01ad9794aae8f3b6f6aca0";
 /**
- * BaseUrls for MovieTmdb api
+ * BaseUrls for MovieTMDB api
  */
-const BASEURLS = {
+const BASEURL = {
   trending: `/trending/all/week?api_key=${API_KEY}&language=en-US`,
   topRated: `/movie/top_rated?api_key=${API_KEY}&language=en-US`,
   netflixOriginal: `/discover/tv?api_key=${API_KEY}&with_networks=213`,
-  commedyMovies: `/discover/movie?api_key=${API_KEY}&with_genres=35`,
+  comedyMovies: `/discover/movie?api_key=${API_KEY}&with_genres=35`,
   horrorMovies: `/discover/movie?api_key=${API_KEY}&with_genres=27`,
-  romaticMvoie: `/discover/movie?api_key=${API_KEY}&with_genres=10749`,
-  documantriesMovie: `/discover/movie?api_key=${API_KEY}&with_genres=99`,
+  romanticMovie: `/discover/movie?api_key=${API_KEY}&with_genres=10749`,
+  documentariesMovie: `/discover/movie?api_key=${API_KEY}&with_genres=99`,
 };
 
 /**
- * Functions for requestging and fetching data from MovieTMDB
+ * Functions for requesting and fetching data from MovieTMDB
  */
 export const fetchTrendingMovies = () => {
-  return api.get(`${BASEURLS.trending}`);
+  return api.get(`${BASEURL.trending}`);
 };
 
 /**
@@ -28,7 +29,7 @@ export const fetchTrendingMovies = () => {
  * @returns
  */
 export const fetchTopRatedMovie = () => {
-  return api.get(`${BASEURLS.topRated}`);
+  return api.get(`${BASEURL.topRated}`);
 };
 
 /**
@@ -36,18 +37,18 @@ export const fetchTopRatedMovie = () => {
  * @param movieGenre
  * @returns
  */
-export const fetchMovieByGenre = (movieGenre: genre) => {
-  if (movieGenre === "commedy") {
-    return api.get(`${BASEURLS.commedyMovies}`);
+export const fetchMovieByGenre = <AxiosResponse>(movieGenre: genre) => {
+  if (movieGenre === "comedy") {
+    return api.get(`${BASEURL.comedyMovies}`);
   } else if (movieGenre === "horror") {
-    return api.get(`${BASEURLS.horrorMovies}`);
+    return api.get(`${BASEURL.horrorMovies}`);
   } else if (movieGenre === "romantic") {
-    return api.get(`${BASEURLS.romaticMvoie}`);
-  } else if (movieGenre === "documentray") {
-    return api.get(`${BASEURLS.documantriesMovie}`);
+    return api.get(`${BASEURL.romanticMovie}`);
+  } else if (movieGenre === "documentary") {
+    return api.get(`${BASEURL.documentariesMovie}`);
   }
 };
 
-export const fetchNetflixOriginals = () => {
-  return api.get(`${BASEURLS.netflixOriginal}`);
+export const fetchNetflixOriginals = <AxiosResponse>() => {
+  return api.get(`${BASEURL.netflixOriginal}`);
 };
