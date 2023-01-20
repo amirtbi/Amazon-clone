@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { reactive, ref, onMounted } from "vue";
+import { reactive, ref, onMounted, nextTick } from "vue";
 import HomeScreenLayout from "@/layouts/homeScreen.vue";
 import BannerContent from "@/components/layouts/BannerContent.vue";
-import { fetchNetflixOriginals } from "@/services/MovieTMDBApi";
+
+import { useMovie } from "@/composable/usefetchhMovie";
 
 const movieInfo = reactive<{
   title: string;
@@ -10,31 +11,21 @@ const movieInfo = reactive<{
   background: string;
 }>({ title: "", description: "", background: "" });
 
-const loading = ref(false);
-const fetchData = async () => {
-  try {
-    loading.value = true;
-    const { data } = await fetchNetflixOriginals();
-
-    const { results: movieList } = await data;
-    console.log("Results", movieList);
-    const randomNumber: number = Math.floor(
-      Math.random() * movieList.length - 1
-    );
-    movieInfo.title = movieList[randomNumber].name;
-    movieInfo.background =
-      "https://image.tmdb.org/t/p/original/" +
-      movieList[randomNumber].backdrop_path;
-    movieInfo.description = movieList[randomNumber].overview;
-
-    console.log("movie info", movieInfo);
-  } catch (e) {
-    console.log("e", e);
-  }
-};
+const { fetchMovieGenre, fetchOriginalMovie } = useMovie();
 
 onMounted(async () => {
-  await fetchData();
+  const { title, description, background } = await fetchOriginalMovie();
+
+  /**
+   * Set movieInfo
+   */
+  movieInfo.title = title;
+  movieInfo.description = description;
+  movieInfo.background = background;
+
+  await nextTick();
+  await fetchMovieGenre("comedy");
+  // await fetchData();
 });
 </script>
 

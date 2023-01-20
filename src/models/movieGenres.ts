@@ -1,1 +1,1 @@
-export type genre = "commedy" | "horror" | "romantic" | "documentray";
+export type genre = "comedy" | "horror" | "romantic" | "documentary";
