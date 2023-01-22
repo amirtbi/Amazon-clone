@@ -37,8 +37,8 @@ export const useMovie =()=>{
             console.log(results)
 
             const movieList = results.map((movie:any)=>{
-                return {title:movie.name,background:"https://image.tmdb.org/t/p/original/" +
-                movie.backdrop_path,description:movie.overview,vote:movie.vote_average}
+                return {title:movie.title,background:"https://image.tmdb.org/t/p/original/" +
+                movie.poster_path,description:movie.overview,vote:movie.vote_average}
             })
             return movieList
         }
