@@ -22,6 +22,9 @@ import Navbar from "@/components/layouts/Navbar.vue";
         </div>
         <div class="fade-container"></div>
       </div>
+      <div class="poster-row">
+        <slot name="poster-rows" />
+      </div>
     </header>
 
     <!--Page content-->
