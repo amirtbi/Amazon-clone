@@ -34,59 +34,6 @@ import Navbar from "@/components/layouts/Navbar.vue";
   </div>
 </template>
 
-<style scoped>
-.layout-wrapper {
-  min-height: 100%;
-  overflow-y: hidden;
-}
-
-.header-row {
-  position: relative;
-  z-index: 2000000000;
-  max-height: 448px;
-  height: 448px;
-}
-.page-content-layout {
-  height: 100vh;
-}
-.fade-container {
-  height: 7rem;
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: 11111111111111111;
-  background: linear-gradient(
-    180deg,
-    transparent,
-    rgba(37, 37, 37, 0.61),
-    transparent
-  );
-}
-
-/**Banner styles */
-
-.banner-container {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  z-index: -1;
-  background-color: black;
-  /* background-image: url("https://image.tmdb.org/t/p/original/9PFonBhy4cQy7Jz20NpMygczOkv.jpg"); */
-  background-size: cover;
-  background-position: center top 10%;
-  background-repeat: no-repeat;
-  object-fit: contain;
-  height: 448px;
-}
-.banner-cover {
-  width: 100%;
-  max-height: 400px;
-  height: 400px;
-}
-.banner-content {
-  position: relative;
-  top: 35%;
-  left: 5%;
-}
+<style scoped lang="scss">
+@import "@/assets/layout/layout.scss";
 </style>
